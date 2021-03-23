@@ -7,30 +7,30 @@ import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 import './sign-in.styles.scss';
 
-class SignIn extends React.Component{
-    constructor(props){
+class SignIn extends React.Component {
+    constructor(props) {
         super(props);
 
         this.state = {
-            email:'',
-            password:''
+            email: '',
+            password: ''
         }
     }
 
     handleSubmit = event => {
         event.prevent.Default();
-        this.setState({ email: '', password: ''})
+        this.setState({ email: '', password: '' })
     }
 
     handleChange = event => {
-        const { value, name }= event.target;
+        const { value, name } = event.target;
 
         this.setState({ [name]: value })
     }
 
 
-    render(){
-        return(
+    render() {
+        return (
             <div className='sign-in'>
                 <h2 className=''>I already have an account</h2>
                 <span>Sign in with your email account</span>
@@ -38,9 +38,10 @@ class SignIn extends React.Component{
                 <form onSubmit={this.handleSubmit}>
                     <FormInput name='email' type='email' value={this.state.email} label="email" handleChange={this.handleChange} required></FormInput>
                     <FormInput name='password' type='password' value={this.state.password} label="password" handleChange={this.handleChange} required></FormInput>
-
-                    <CustomButton type='submit'>Sign in</CustomButton>
-                    <CustomButton onClick={signInWithGoogle}>{' '}Sign in with Google{' '}</CustomButton>
+                    <div className='buttons'>
+                        <CustomButton type='submit'>Sign in</CustomButton>
+                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn>{' '}Sign in with Google{' '}</CustomButton>
+                    </div>
                 </form>
             </div>
         )
